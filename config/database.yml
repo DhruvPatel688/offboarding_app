@@ -77,6 +77,24 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+
+development:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: offboarding_tracker_development
+
+test:
+  <<: *default
+  database: offboarding_tracker_test
+
+production:
+  primary:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
+
+  cable:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
