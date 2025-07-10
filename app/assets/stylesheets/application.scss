@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+@import "bootstrap";
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+.btn-custom {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-custom:hover {
+    background-color: #3e8e41;
+  }
+  
+  .btn-outline-custom {
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-outline-custom:hover {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .btn-edit-custom {
+    border: 1px solid #03A9F4;
+    color: #03A9F4;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-edit-custom:hover {
+    background-color: #03A9F4;
+    color: #fff;
+  }
+  
+  .btn-delete-custom {
+    border: 1px solid #E74C3C;
+    color: #E74C3C;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-delete-custom:hover {
+    background-color: #E74C3C;
+    color: #fff;
+  }
+
+  .btn-custom {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-custom:hover {
+    background-color: #3e8e41;
+  }
+  
+  .link-custom {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .link-custom:hover {
+    color: #3e8e41;
+    text-decoration: underline;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .navbar .nav-link {
+    color: #2c3e50 !important;
+    font-weight: 500;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #0056b3 !important;
+  }
+  

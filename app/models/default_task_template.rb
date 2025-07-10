@@ -1,0 +1,2 @@
+class DefaultTaskTemplate < ApplicationRecord
+end

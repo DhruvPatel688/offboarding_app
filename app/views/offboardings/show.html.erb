@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0" style="font-weight: 600; color: #2c3e50;">Offboarding: <%= @offboarding.employee.full_name %></h1>
+  <%= link_to "Edit", edit_offboarding_path(@offboarding), class: "btn btn-edit-custom" %>
+</div>
+
+<%= form_with model: @offboarding, local: true, class: "d-flex align-items-center gap-2" do |form| %>
+  <strong>Status:</strong>
+  <%= form.select :status, Offboarding::STATUSES.map { |s| [s.humanize, s] }, {}, class: "form-select form-select-sm w-auto" %>
+  <%= form.submit "Update", class: "btn btn-sm btn-outline-primary" %>
+<% end %>
+<br>
+<%= form_with model: @offboarding, local: true, class: "d-flex align-items-center gap-2" do |form| %>
+  <strong>Due Date:</strong>
+  <%= form.date_field :due_date, class: "form-control form-control-sm w-auto" %>
+  <%= form.submit "Update", class: "btn btn-sm btn-outline-primary" %>
+<% end %>
+<br>
+<div class="mb-4">
+  <p>
+    <strong>Checklist Completion:</strong>
+    <%= @offboarding.tasks.where(status: "completed").count %> /
+    <%= @offboarding.tasks.count %> tasks completed
+  </p>
+
+  <div class="progress" style="height: 20px;">
+    <div class="progress-bar <%= @offboarding.completion_percentage >= 100 ? 'bg-success' : 'bg-info' %>"
+         style="width: <%= @offboarding.completion_percentage %>%" role="progressbar">
+      <%= @offboarding.completion_percentage %>
+    </div>
+  </div>
+</div>
+
+<%= link_to "Asset Recovery", offboarding_assets_path(@offboarding), class: "btn btn-sm btn-edit-custom" %>
+<br>
+<div class="card mb-4">
+  <div class="card-header">
+    <strong>Checklist Tasks</strong>
+  </div>
+  <div class="card-body p-0">
+    <table class="table mb-0">
+      <thead class="table-dark text-white">
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Assigned To</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @offboarding.tasks.each do |task| %>
+          <tr>
+            <td><%= task.title %></td>
+
+            <td>
+              <%= form_with model: [@offboarding, task], method: :patch, local: true, class: "d-inline" do |form| %>
+                <%= form.select :status,
+                  Task::STATUSES.map { |s| ["#{s.humanize}", s] },
+                  { selected: task.status },
+                  {
+                    class: "form-select form-select-sm text-white fw-bold bg-#{task.status_badge}",
+                    onchange: "this.form.submit();"
+                  } %>
+              <% end %>
+            </td>
+
+            <td><%= task.assigned_to %></td>
+            <td><%= task.notes.presence || "-" %></td>
+
+            <td class="text-end">
+              <%= link_to "Show", offboarding_task_path(@offboarding, task), class: "btn btn-sm btn-outline-custom me-1" %>
+              <%= link_to "Edit", edit_offboarding_task_path(@offboarding, task), class: "btn btn-sm btn-edit-custom" %>
+            </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><strong>Add Task</strong></div>
+  <div class="card-body">
+    <%= form_with(model: [@offboarding, Task.new], local: true) do |form| %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= form.label :status %>
+          <%= form.select :status, Task::STATUSES.map { |s| [s.humanize, s] }, {}, class: "form-select" %>
+        </div>
+        <div class="col-md-3">
+          <%= form.label :assigned_to %>
+          <%= form.text_field :assigned_to, class: "form-control" %>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <%= form.submit "Add Task", class: "btn btn-custom w-100" %>
+        </div>
+      </div>
+      <div class="mt-3">
+        <%= form.label :notes %>
+        <%= form.text_area :notes, class: "form-control", rows: 2 %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-5 text-muted">
+  <h6>Upcoming Features (Enterprise)</h6>
+  <ul class="small">
+    <li>HRIS integration with Workday, BambooHR</li>
+    <li>One-click access revocation via API</li>
+    <li>Compliance-specific templates (SOX, HIPAA, PCI)</li>
+    <li>Automated risk scoring for security prioritization</li>
+    <li>Real-time analytics dashboard</li>
+  </ul>
+</div>

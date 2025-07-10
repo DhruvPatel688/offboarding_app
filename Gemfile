@@ -61,3 +61,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Authentication
+gem 'devise'
+
+# Bootstrap and dependencies
+gem 'bootstrap', '~> 5.3.0'
+gem 'sassc-rails'
+gem 'jquery-rails'

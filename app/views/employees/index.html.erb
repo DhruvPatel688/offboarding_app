@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0" style="font-weight: 600; color: #2c3e50;">All Employees</h1>
+  <%= link_to "Add Employee", new_employee_path, class: "btn btn-custom" %>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="bg-dark text-white">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.full_name %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.department %></td>
+            <td><%= employee.position %></td>
+            <td>
+              <%= link_to "Show", employee_path(employee), class: "btn btn-sm btn-outline-custom" %>
+              <%= link_to "Edit", edit_employee_path(employee), class: "btn btn-sm btn-edit-custom" %>
+              <%= link_to "Delete", employee_path(employee), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-delete-custom" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

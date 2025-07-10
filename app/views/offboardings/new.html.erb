@@ -1,0 +1,15 @@
+<% content_for :title, "New Offboarding" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0" style="font-weight: 600; color: #2c3e50;">New Offboarding</h1>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <%= render "form", offboarding: @offboarding %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <%= link_to "Back to offboardings", offboardings_path, class: "btn btn-secondary" %>
+</div>

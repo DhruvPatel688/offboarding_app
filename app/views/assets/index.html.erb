@@ -1,0 +1,32 @@
+<h1>Assets</h1>
+<%= link_to "Add Asset", new_offboarding_asset_path(@offboarding), class: "btn btn-secondary"%>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Returned</th>
+      <th>Condition</th>
+      <th>Notes</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @offboarding.assets.each do |asset| %>
+      <tr>
+        <td><%= asset.name %></td>
+        <td><%= asset.returned ? "Yes" : "No" %></td>
+        <td><%= asset.condition %></td>
+        <td><%= asset.notes %></td>
+        <td><%= link_to "View", offboarding_asset_path(@offboarding, asset), class: "btn btn-sm btn-outline-custom" %>
+        <%= link_to "Edit", edit_offboarding_asset_path(@offboarding, asset), class: "btn btn-sm btn-edit-custom" %></td>
+        <td>
+          <%= button_to "Delete", offboarding_asset_path(@offboarding, asset), 
+            method: :delete, 
+            class: "btn btn-danger", 
+            form: { data: { turbo: false } }, 
+            data: { confirm: "Are you sure?" },  class: "btn btn-sm btn-delete-custom" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

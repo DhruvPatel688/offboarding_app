@@ -1,0 +1,23 @@
+<div id="<%= dom_id offboarding %>" class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title">Offboarding Details</h5>
+    <p class="card-text">
+      <strong>Employee:</strong>
+      <%= offboarding.employee.full_name %>
+    </p>
+    <p class="card-text">
+      <strong>Due date:</strong>
+      <%= offboarding.due_date.strftime("%b %d, %Y") %>
+    </p>
+    <p class="card-text">
+      <strong>Status:</strong>
+      <span class="badge <%= offboarding.status == 'completed' ? 'bg-success' : 'bg-warning' %>">
+        <%= offboarding.status.humanize %>
+      </span>
+    </p>
+    <p class="card-text">
+      <strong>Created by:</strong>
+      <%= offboarding.created_by.email %>
+    </p>
+  </div>
+</div>

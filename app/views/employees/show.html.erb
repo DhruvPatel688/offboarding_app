@@ -1,0 +1,15 @@
+<% if notice %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <%= render @employee %>
+  </div>
+</div>
+
+<div class="mt-3">
+  <%= link_to "Edit this employee", edit_employee_path(@employee), class: "btn btn-sm btn-outline-primary" %>
+  <%= link_to "Back to employees", employees_path, class: "btn btn-sm btn-secondary" %>
+  <%= button_to "Destroy this employee", @employee, method: :delete, class: "btn btn-sm btn-outline-danger" %>
+</div>

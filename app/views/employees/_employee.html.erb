@@ -1,0 +1,25 @@
+<div id="<%= dom_id employee %>" class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title">Employee Details</h5>
+    <p class="card-text">
+      <strong>First name:</strong>
+      <%= employee.first_name %>
+    </p>
+    <p class="card-text">
+      <strong>Last name:</strong>
+      <%= employee.last_name %>
+    </p>
+    <p class="card-text">
+      <strong>Email:</strong>
+      <a href="mailto:<%= employee.email %>"><%= employee.email %></a>
+    </p>
+    <p class="card-text">
+      <strong>Department:</strong>
+      <%= employee.department %>
+    </p>
+    <p class="card-text">
+      <strong>Position:</strong>
+      <%= employee.position %>
+    </p>
+  </div>
+</div>

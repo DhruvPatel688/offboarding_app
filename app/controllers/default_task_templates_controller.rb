@@ -1,0 +1,2 @@
+class DefaultTaskTemplatesController < ApplicationController
+end

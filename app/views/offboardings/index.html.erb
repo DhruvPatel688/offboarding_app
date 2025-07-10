@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0" style="font-weight: 600; color: #2c3e50;">Offboarding Employees</h1>
+  <%= link_to "Add Offboarding", new_offboarding_path, class: "btn btn-custom" %>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="bg-dark text-white">
+        <tr>
+          <th>Employee</th>
+          <th>Status</th>
+          <th>Due Date</th>
+          <th>Created By</th>
+          <th>Progress</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @offboardings.each do |offboarding| %>
+          <tr>
+            <td><%= offboarding.employee.full_name %></td>
+            <td>
+              <span class="badge <%= offboarding.status == 'completed' ? 'bg-success' : 'bg-warning' %>">
+                <%= offboarding.status.humanize %>
+              </span>
+            </td>
+            <td><%= offboarding.due_date.strftime("%b %d, %Y") %></td>
+            <td><%= offboarding.created_by.email %></td>
+            <td>
+              <div class="progress" style="height: 20px;">
+                <div class="progress-bar <%= offboarding.completion_percentage >= 100 ? 'bg-success' : 'bg-info' %>" role="progressbar" style="width: <%= offboarding.completion_percentage %>%;" aria-valuenow="<%= offboarding.completion_percentage %>" aria-valuemin="0" aria-valuemax="100">
+                  <%= offboarding.completion_percentage %>%</div>
+              </div>
+            </td>
+            <td>
+              <%= link_to "Show", offboarding_path(offboarding), class: "btn btn-sm btn-outline-custom" %>
+              <%= link_to "Edit", edit_offboarding_path(offboarding), class: "btn btn-sm btn-edit-custom" %>
+            </td>
+            <td>
+            <%= button_to "Delete", offboarding_path(offboarding), 
+              method: :delete, 
+              class: "btn btn-danger", 
+              form: { data: { turbo: false } }, 
+              data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-delete-custom" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
