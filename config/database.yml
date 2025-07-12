@@ -80,7 +80,7 @@ test:
 production:
   primary:
     <<: *default
-    url: <%= ENV["APP_DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
   cable:
     <<: *default
-    url: <%= ENV["APP_DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] %>
