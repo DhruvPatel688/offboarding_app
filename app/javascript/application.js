@@ -3,4 +3,12 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 
-
+function toggleMenu() {
+    var navbar = document.getElementById("navbarSupportedContent");
+    navbar.classList.toggle("show");
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var toggler = document.querySelector(".navbar-toggler");
+    toggler.addEventListener("click", toggleMenu);
+  });

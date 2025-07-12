@@ -15,48 +15,53 @@
 
   <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #f8f9fa;">
-      <div class="container">
-        <%= link_to "Offboarding Tracker", root_path, class: "navbar-brand fw-bold", style: "color: #2c3e50;" %>
+  <div class="container">
+    <%= link_to "Offboarding Tracker", root_path, class: "navbar-brand fw-bold", style: "color: #2c3e50;" %>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <% if user_signed_in? %>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <%= link_to "Offboardings", offboardings_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Employees", employees_path, class: "nav-link" %>
-              </li>
-            </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Offboardings", offboardings_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Employees", employees_path, class: "nav-link" %>
+          </li>
+        </ul>
 
-    
-
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <%= link_to 'My Account', user_path, class: 'nav-link' %>
-              </li>
-              <%= form_tag(destroy_user_session_path, method: :delete) do %>
-                <%= submit_tag "Logout", class: "nav-link text-danger" %>
-              <% end %>
-            </ul>
-            
-          <% else %>
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-              </li>
-            </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'My Account', user_path, class: 'nav-link' %>
+          </li>
+          <%= form_tag(destroy_user_session_path, method: :delete) do %>
+            <%= button_tag "Logout", class: "nav-link text-danger border-0 bg-transparent" %>
           <% end %>
-        </div>
-      </div>
-    </nav>
+        </ul>
+        
+      <% else %>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function toggleMenu() {
+    var navbar = document.getElementById("navbarSupportedContent");
+    navbar.classList.toggle("show");
+  }
+</script>
     <br>
     <div class="container">
       <% if notice %>
